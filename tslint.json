@@ -1,0 +1,28 @@
+{
+    "extends": [
+        "tslint:latest",
+        "tslint-eslint-rules",
+        "tslint-react"
+    ],
+    "rules": {
+
+        // rules availably via tslint-eslint-rules
+        "indent": [true, "spaces"],
+        "no-multi-spaces": true,
+        "no-duplicate-case": true,
+        "no-extra-semi": true,
+        "no-invalid-regexp": true,
+        "no-irregular-whitespace": true,
+        "valid-typeof": true,
+        "array-bracket-spacing": [ true, "always" ],
+        "object-curly-spacing": [ true, "always" ],
+        "space-in-parens": [ false, "always" ],
+        "ter-arrow-spacing": [ true, { "before": true, "after": true } ],
+
+        // override default rules from packages listed in "extends"
+        "quotemark": [true, "single", "jsx-double"],
+        "ordered-imports": [ false ],
+        "max-line-length": [ false ],
+        "no-shadowed-variable": false
+    }
+}

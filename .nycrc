@@ -1,0 +1,20 @@
+{
+  "include": ["src/ts/**/*"],
+  "exclude": [
+    "src/ts/entry.ts",
+    "src/ts/app.tsx",
+    "src/ts/**/*-test.(ts|tsx|js|jsx)"
+  ],
+  "extension": [".tsx", ".ts"],
+  "require": ["ts-node/register"],
+  "silent": false,
+  "cache": true,
+  "check-coverage": true,
+  "lines": 75,
+  "statements": 75,
+  "functions": 75,
+  "branches": 75,
+  "reporter": [ "lcov", "text-summary", "html" ],
+  "report-dir": "./.coverage",
+  "all": true
+}
