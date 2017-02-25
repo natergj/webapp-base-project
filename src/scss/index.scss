@@ -10,9 +10,9 @@
 // Shared Components
 @import '../shared-components/title-bar/title-bar';
 
-// Pages 
-@import '../pages/home/home';
-@import '../pages/network/network';
+// Routes 
+@import '../routes/home/home';
+@import '../routes/network/network';
 
 // Global Rules
 body {

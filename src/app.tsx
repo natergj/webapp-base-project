@@ -9,8 +9,8 @@ import 'core-js';
 import 'matchmedia-polyfill';
 
 // import main page components
-import Main from './pages/home/homeContainer';
-import NetworkContainer from './pages/network/networkContainer';
+import Main from './routes/home/homeContainer';
+import NetworkContainer from './routes/network/networkContainer';
 import { store, history } from './modules/createStore';
 
 render((

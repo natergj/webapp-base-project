@@ -5,8 +5,8 @@ import { List } from 'immutable';
 import { IAsyncAction } from '../../utils/asyncActions';
 import { Spin } from 'antd';
 
-import NetworkDetailContainer from './children/_networkDetailContainer';
-import NetworkStationsContainer from './children/_networkStationsContainer';
+import NetworkDetailContainer from './descendants/_networkDetailContainer';
+import NetworkStationsContainer from './descendants/_networkStationsContainer';
 
 interface INetworkProps {
   network: ICitybikNetwork;
