@@ -24,8 +24,8 @@ export function fetchCitybikNetworks() {
       });
       dispatch({ type: SET_CITYBIK_NETWORKS_LIST, payload: usNetworks });
     })
-    .catch((e) => {
-      throw e;
+    .catch((e: any) => {
+      console.error(e);
     });
   };
 }

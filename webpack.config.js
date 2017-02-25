@@ -18,7 +18,7 @@ const prodWebpackConfig = {
       "redux-immutable",
       "redux-thunk"
     ],
-    app: './src/ts/entry'
+    app: './src/entry'
   },
   output: {
     filename: '[name].[hash].js',
@@ -88,7 +88,7 @@ const devWebpackConfig = {
       "redux-immutable",
       "redux-thunk"
     ],
-    app: './src/ts/entry'
+    app: './src/entry'
   },
   output: {
     filename: 'app.js',

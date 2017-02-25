@@ -8,11 +8,11 @@
 @import './mixins/truncate-text';
 
 // Shared Components
-@import '../ts/shared-components/title-bar/title-bar';
+@import '../shared-components/title-bar/title-bar';
 
 // Pages 
-@import '../ts/pages/home/home';
-@import '../ts/pages/network/network';
+@import '../pages/home/home';
+@import '../pages/network/network';
 
 // Global Rules
 body {

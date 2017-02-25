@@ -2,7 +2,7 @@
 import './app';
 
 // load main style sheet
-import '../scss/index.scss';
+import './scss/index.scss';
 
 // load helper style sheets for packages importing local files
-import '../assets/fonts/iconfont/iconfont.css';
+import './assets/fonts/iconfont/iconfont.css';

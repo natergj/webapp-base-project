@@ -20,10 +20,10 @@ describe('_citybikActionCreators', () => {
     sandbox = sinon.sandbox.create();
     sandbox.stub(window, 'fetch');
     dispatchEvents = [];
-    dispatch = (action: any) => {
+    dispatch = (action: any): void => {
       dispatchEvents.push(action);
     };
-    window.fetch.returns(Promise.resolve({ status: 200, json: { network: 'testNetwork' } }));
+    window.fetch.returns(Promise.resolve({ status: 200, json: (): any => ({ network: 'testNetwork' }) }));
   });
   afterEach(() => {
     sandbox.restore();

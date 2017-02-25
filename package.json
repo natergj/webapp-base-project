@@ -4,12 +4,12 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run clean && NODE_ENV=production webpack",
+    "build": "npm run clean && webpack",
     "clean": "rm -rf ./dist",
-    "lint": "tslint src/ts/*",
+    "lint": "tslint src/*",
     "preinstall": "NODE_ENV=development",
-    "test": "mocha --require ./.preMocha.js src/**/*-test.*",
-    "test:watch": "mocha --require ./.preMocha.js  -w --watch-extensions ts,tsx src/**/*-test.*",
+    "test": "mocha --require ./.preMocha.js src/**/*.test.*",
+    "test:watch": "mocha --require ./.preMocha.js  -w --watch-extensions ts,tsx src/**/*.test.*",
     "test:coverage": "nyc npm test",
     "watch": "npm run clean && NODE_ENV=development webpack --watch",
     "dev": "npm run clean && NODE_ENV=development webpack-dev-server"
@@ -30,13 +30,14 @@
     "react-router-redux": "4.0.8",
     "redux": "3.6.0",
     "redux-immutable": "3.1.0",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "2.2.0",
+    "typescript": "^2.2.1"
   },
   "devDependencies": {
     "@types/chai": "3.4.34",
-    "@types/core-js": "0.9.35",
+    "@types/core-js": "^0.9.35",
     "@types/enzyme": "2.7.4",
-    "@types/isomorphic-fetch": "0.0.32",
+    "@types/isomorphic-fetch": "0.0.33",
     "@types/jsdom": "^2.0.30",
     "@types/mocha": "2.2.39",
     "@types/node": "^7.0.5",
@@ -65,11 +66,11 @@
     "source-map-loader": "0.1.6",
     "style-loader": "0.13.1",
     "ts-loader": "2.0.0",
-    "ts-node": "2.1.0",
+    "ts-node": "^2.1.0",
     "tslint": "4.4.2",
     "tslint-eslint-rules": "3.4.0",
     "tslint-react": "2.4.0",
-    "typescript": "2.1.6",
+    "typescript": "^2.2.1",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.1"
   }
