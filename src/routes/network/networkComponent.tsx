@@ -16,7 +16,7 @@ interface INetworkProps {
 }
 
 class NetworkComponent extends React.Component<INetworkProps, any> {
-  public componentWillMount() {
+  public componentDidMount() {
     this.props.fetchCitybikNetwork(this.props.params.networkId);
   }
 

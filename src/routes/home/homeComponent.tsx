@@ -18,7 +18,7 @@ class Main extends React.Component<IMainProps, any> {
     this.onMenuItemSelect = this.onMenuItemSelect.bind(this);
   }
 
-  public componentWillMount() {
+  public componentDidMount() {
     this.props.fetchCitybikNetworks();
   }
 
