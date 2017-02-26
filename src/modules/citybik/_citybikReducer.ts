@@ -1,10 +1,12 @@
-import { fromJS, List } from 'immutable';
+import { fromJS, List, Record } from 'immutable';
 import {
-  IAsyncAction
+  IAsyncAction,
 } from '../../utils/asyncActions';
 import {
+  ICityBikState,
   ICitybikStation,
   ICitybikNetwork,
+  ICitybikModuleName,
 } from './_citybikInterfaces';
 import {
   ModuleName,
@@ -13,17 +15,17 @@ import {
   SET_CURRENT_CITYBIK_NETWORK_LOADING_STATUS,
 } from './_citybikConstants';
 
-export const initialState = fromJS({
+export const initialState: ICityBikState = fromJS({
   citybikNetworks: [],
   currentNetwork: {},
   currentNetworkLoadingStatus: null,
 });
 
 // Selectors
-export function getCurrentNetwork(state: any): ICitybikNetwork {
+export function getCurrentNetwork(state: ICityBikState): ICitybikNetwork {
   return state.getIn([ ModuleName, 'currentNetwork' ]);
 }
-export function getCitybikNetworks(state: any): List<ICitybikNetwork> {
+export function getCitybikNetworks(state: ICityBikState): List<ICitybikNetwork> {
   return state.getIn([ ModuleName, 'citybikNetworks' ]);
 }
 export function getCurrentNetworkLoadingStatus(state: any): IAsyncAction {
