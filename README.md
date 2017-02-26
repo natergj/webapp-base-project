@@ -15,14 +15,12 @@ project
 |  |  |__ variables
 |  |  |__ index.scss
 |  |
-|  |__ ts
-|  |  |__ modules (see below)
-|  |  |__ pages (see below)
-|  |  |__ shared-components (component shared across pages)
-|  |  |__ utils (utility methods/functions/interfaces)
-|  |  |__ app.tsx (main redux application)
-|  |  |__ entry.ts (entry point for webpack)
-|  |  
+|  |__ modules (see below)
+|  |__ routes (see below)
+|  |__ shared-components (component shared across pages)
+|  |__ utils (utility methods/functions/interfaces)
+|  |__ app.tsx (main redux application)
+|  |__ entry.ts (entry point for webpack)
 |  |__ index.ejs
 |
 |__ dist
