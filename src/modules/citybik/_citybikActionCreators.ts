@@ -2,57 +2,43 @@ import { push } from 'react-router-redux';
 import {
   SET_CITYBIK_NETWORKS_LIST,
   SET_CURRENT_CITYBIK_NETWORK,
-  SET_CURRENT_CITYBIK_NETWORK_LOADING_STATUS,
+  CURRENT_CITYBIK_NETWORK_LOADING_STATUS_LOADING,
+  CURRENT_CITYBIK_NETWORK_LOADING_STATUS_DONE,
+  CURRENT_CITYBIK_NETWORK_LOADING_STATUS_ERROR,
+  CURRENT_CITYBIK_NETWORK_LOADING_STATUS_UNCAUGHT,
+  CITYBIK_NETWORKS_LOADING_STATUS_LOADING,
+  CITYBIK_NETWORKS_LOADING_STATUS_DONE,
+  CITYBIK_NETWORKS_LOADING_STATUS_ERROR,
+  CITYBIK_NETWORKS_LOADING_STATUS_UNCAUGHT,
 } from './_citybikConstants';
-import {
-  setCurrentCitybikNetworkLoadingStatus,
-} from './_citybikActions';
+import { API_FETCH } from '../apiMiddleware';
 
 export function fetchCitybikNetworks() {
-  return (dispatch: any) => {
-    window.fetch('http://api.citybik.es/v2/networks', {
-      method: 'GET',
-    })
-    .then(handleResponse)
-    .then((data: any) => {
-      const usNetworks = data.networks
-      .filter((network: any) => {
-        return network.location && network.location.country === 'US';
-      })
-      .sort((a: any, b: any) => {
-        return a.location.city.localeCompare(b.location.city);
-      });
-      dispatch({ type: SET_CITYBIK_NETWORKS_LIST, payload: usNetworks });
-    })
-    .catch((e: any) => {
-      console.error(e);
-    });
+  return {
+    type: API_FETCH,
+    payload: {
+      url: 'http://api.citybik.es/v2/networks',
+      startActionType: CITYBIK_NETWORKS_LOADING_STATUS_LOADING,
+      successActionType: CITYBIK_NETWORKS_LOADING_STATUS_DONE,
+      errorActionType: CITYBIK_NETWORKS_LOADING_STATUS_ERROR,
+      uncaughtErrorActionType: CITYBIK_NETWORKS_LOADING_STATUS_UNCAUGHT,
+    },
   };
 }
 
 export function fetchCitybikNetwork(networkId: string) {
-  return (dispatch: any) => {
-    dispatch(setCurrentCitybikNetworkLoadingStatus('LOADING'));
-    window.fetch(`http://api.citybik.es/v2/networks/${networkId}`)
-    .then(handleResponse)
-    .then((data) => {
-      dispatch({ type: SET_CURRENT_CITYBIK_NETWORK, payload: data.network });
-      dispatch(setCurrentCitybikNetworkLoadingStatus('DONE'));
-    });
+  return {
+    type: API_FETCH,
+    payload: {
+      url: `http://api.citybik.es/v2/networks/${networkId}`,
+      startActionType: CURRENT_CITYBIK_NETWORK_LOADING_STATUS_LOADING,
+      successActionType: CURRENT_CITYBIK_NETWORK_LOADING_STATUS_DONE,
+      errorActionType: CURRENT_CITYBIK_NETWORK_LOADING_STATUS_ERROR,
+      uncaughtErrorActionType: CURRENT_CITYBIK_NETWORK_LOADING_STATUS_UNCAUGHT,
+    },
   };
 }
 
 export function goToCitybikNetwork(networkId: string) {
-  return (dispatch: any) => {
-    dispatch(push(networkId));
-  };
+  return push(networkId);
 }
-
-const handleResponse = (response: any) => {
-  switch (response.status) {
-    case 200:
-      return response.json();
-    default:
-      throw Error('Unhandled error code from networks request.');
-  }
-};

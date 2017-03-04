@@ -3,7 +3,7 @@ import { hashHistory } from 'react-router';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { compose, applyMiddleware, createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
-import thunkMiddleware from 'redux-thunk';
+import { apiMiddleware } from './apiMiddleware';
 
 // Application Modules
 import * as CitybikModule from './citybik';
@@ -17,8 +17,8 @@ const reducers = combineReducers({
 
 // Compose all middleware functions into the redux execution chain (ordering may be important to you)
 const composedMiddleware = compose(
-  applyMiddleware(thunkMiddleware),
   applyMiddleware(routerMiddleware(hashHistory)),
+  applyMiddleware(apiMiddleware),
 );
 
 // Combine all reducer states into a single redux store and export for use with react-router

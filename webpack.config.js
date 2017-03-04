@@ -85,8 +85,7 @@ const devWebpackConfig = {
       "react-router",
       "react-router-redux",
       "redux",
-      "redux-immutable",
-      "redux-thunk"
+      "redux-immutable"
     ],
     app: './src/entry'
   },
