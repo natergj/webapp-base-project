@@ -4,6 +4,7 @@ import { ICitybikNetwork } from '../../modules/citybik';
 import { List } from 'immutable';
 import { IAsyncAction } from '../../utils/asyncActions';
 import { Spin } from 'antd';
+import InitializeWithData from '../../shared-components/initialize-with-data/initialize-with-data';
 
 import NetworkDetailContainer from './descendants/_networkDetailContainer';
 import NetworkStationsContainer from './descendants/_networkStationsContainer';
@@ -15,16 +16,13 @@ interface INetworkProps {
   params: any;
 }
 
-class NetworkComponent extends React.Component<INetworkProps, any> {
-  public componentDidMount() {
-    this.props.fetchCitybikNetwork(this.props.params.networkId);
-  }
-
-  public render() {
-    const title = this.props.network ?
-      this.props.network.get('name') :
-      this.props.params.networkId;
-    return (
+const NetworkComponent = (props: INetworkProps) => {
+  ;
+  const title = props.network ?
+    props.network.get('name') :
+    props.params.networkId;
+  return (
+    <InitializeWithData initializer={() => props.fetchCitybikNetwork(props.params.networkId)}>
       <div className="my-main-page">
         <TitleBar
           title={title}
@@ -32,8 +30,8 @@ class NetworkComponent extends React.Component<INetworkProps, any> {
         <NetworkDetailContainer />
         <NetworkStationsContainer />
       </div>
-    );
-  }
-}
+    </InitializeWithData>
+  );
+};
 
 export default NetworkComponent;
