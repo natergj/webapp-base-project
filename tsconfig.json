@@ -3,18 +3,20 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "outDir": "./dist",
     "sourceMap": true,
-    "target": "es5"
+    "target": "es2015",
+    "module": "es2015"
   },
   "include": [
     "src/**/*"
   ],
   "exclude": [
     "node_modules",
-    "src/**/*.test.*"
+    "src/**/*.test.*",
+    "dist"
   ]
 }
