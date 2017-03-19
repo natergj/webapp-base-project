@@ -4,16 +4,16 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run clean && webpack -p --optimize-minimize",
+    "build": "npm run clean && webpack -p --env=prod",
     "clean": "rm -rf ./dist",
     "lint": "tslint src/*",
-    "preinstall": "NODE_ENV=development",
+    "preinstall": "NODE_ENV=dev",
     "test": "mocha --require ./.preMocha.js src/**/*.test.*",
     "test:watch": "mocha --require ./.preMocha.js  -w --watch-extensions ts,tsx src/**/*.test.*",
     "test:coverage": "nyc npm test",
-    "watch": "npm run clean && NODE_ENV=development webpack --watch",
-    "dev": "npm run clean && NODE_ENV=development webpack-dev-server",
-    "webpack:stats": "npm run clean && webpack --json | webpack-bundle-size-analyzer"
+    "watch": "npm run clean && webpack --env=dev --watch",
+    "dev": "npm run clean && webpack-dev-server --env=dev",
+    "webpack:stats": "npm run clean && webpack --env=prod --json | webpack-bundle-size-analyzer"
   },
   "repository": {
     "type": "https",
