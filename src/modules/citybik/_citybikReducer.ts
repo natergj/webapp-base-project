@@ -29,10 +29,10 @@ export const initialState: ICityBikState = fromJS({
 });
 
 // Selectors
-export function getCurrentNetwork(state: ICityBikState): ICitybikNetwork {
+export function getCurrentNetwork(state: any): ICitybikNetwork {
   return state.getIn([ ModuleName, 'currentNetwork' ]);
 }
-export function getCitybikNetworks(state: ICityBikState): List<ICitybikNetwork> {
+export function getCitybikNetworks(state: any): List<ICitybikNetwork> {
   return state.getIn([ ModuleName, 'citybikNetworks' ]);
 }
 export function getCurrentNetworkLoadingStatus(state: any): IAsyncAction {

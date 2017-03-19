@@ -1,47 +1,19 @@
 import { expect } from 'chai';
-import { fromJS, Map } from 'immutable';
-import * as sinon from 'sinon';
+import { API_FETCH } from '../../apiMiddleware';
 
-// Attach dummy fetch to window so it can be stubbed out.
-const globalAny: any = global;
-const window = globalAny.window;
-window.fetch = (): any => null;
-
-import * as CitybikActionCreators from '../_citybikActionCreators';
-import * as CitybikActions from '../_citybikActions';
-import * as CitybikConstants from '../_citybikConstants';
+import {
+  fetchCitybikNetwork,
+} from '../_citybikActionCreators';
 
 describe('_citybikActionCreators', () => {
-  let sandbox: any;
-  let dispatchEvents: any[];
-  let dispatch: any;
-
-  beforeEach(() => {
-    sandbox = sinon.sandbox.create();
-    sandbox.stub(window, 'fetch');
-    dispatchEvents = [];
-    dispatch = (action: any): void => {
-      dispatchEvents.push(action);
-    };
-    window.fetch.returns(Promise.resolve({ status: 200, json: (): any => ({ network: 'testNetwork' }) }));
-  });
-  afterEach(() => {
-    sandbox.restore();
-    sandbox = undefined;
-    dispatchEvents = undefined;
-    dispatch = undefined;
-  });
 
   describe('fetchCitybikNetwork', () => {
-    it('should call setCurrentCitybikNetworkLoadingStatus with LOADING status as first dispatch', () => {
-      const setLoadingStatusStub = sandbox.stub(CitybikActions, 'setCurrentCitybikNetworkLoadingStatus', (status: string) => status);
-      const thunk = CitybikActionCreators.fetchCitybikNetwork('networkID');
-      thunk(dispatch);
-      expect(setLoadingStatusStub.getCall(0).calledWith('LOADING')).to.be.true;
+    it('should return action with type API_FETCH', () => {
+      expect(fetchCitybikNetwork('id').type).to.equal(API_FETCH);
     });
 
-    it('should dispatch as action with type SET_CURRENT_CITYBIK_NETWORK as dispatch on successful fetch', () => {
-      // Todo.  Figure out how to test dispatchs that occur after successful fetch.
+    it('should return payload with url `http://api.citybik.es/v2/networks/${networkId}`,', () => {
+      expect(fetchCitybikNetwork('id').payload.url).to.equal('http://api.citybik.es/v2/networks/id');
     });
   });
 });
