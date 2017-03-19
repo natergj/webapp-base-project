@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 
 // import polyfills
 import 'isomorphic-fetch';
-import 'core-js';
 import 'matchmedia-polyfill';
 
 // import main page components
