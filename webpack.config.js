@@ -33,7 +33,6 @@ const getConfig = (env) => {
               loader: 'awesome-typescript-loader',
               options:  {
                 silent: true,
-                compilerOptions: { sourceMap: false },
                 useCache: true,
                 useBabel: true,
                 babelOptions: {
@@ -89,7 +88,8 @@ const getConfig = (env) => {
           secure: false,
         },
       },
-    }
+    };
+    config.devtool = 'source-map';
   }
 
   if (env === 'prod') {

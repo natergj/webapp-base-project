@@ -1,6 +1,8 @@
 import { Map, fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
+export const ModuleName = 'routing';
+
 const initialState: Map<string, any> = fromJS({
   locationBeforeTransitions: null,
 });
