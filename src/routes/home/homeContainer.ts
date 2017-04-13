@@ -3,7 +3,6 @@ import { withRouter } from 'react-router';
 import {
   getCitybikNetworks,
   fetchCitybikNetworks,
-  goToCitybikNetwork,
 } from '../../modules/citybik';
 import HomeComponent from './homeComponent';
 
@@ -14,6 +13,5 @@ export default connect(
   mapStateToProps,
   {
     fetchCitybikNetworks,
-    goToCitybikNetwork,
   },
 )(withRouter(HomeComponent));

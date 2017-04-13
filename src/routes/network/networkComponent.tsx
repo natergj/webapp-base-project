@@ -13,16 +13,16 @@ interface INetworkProps {
   network: ICitybikNetwork;
   fetchCitybikNetwork: (networkId: string) => any;
   loadingStatus: IAsyncAction;
-  params: any;
+  match: any;
 }
 
 const NetworkComponent = (props: INetworkProps) => {
-  ;
+  const { networkId } = props.match.params;
   const title = props.network ?
     props.network.get('name') :
-    props.params.networkId;
+    networkId;
   return (
-    <InitializeWithData initializer={() => props.fetchCitybikNetwork(props.params.networkId)}>
+    <InitializeWithData initializer={() => props.fetchCitybikNetwork(networkId)}>
       <div className="my-main-page">
         <TitleBar
           title={title}

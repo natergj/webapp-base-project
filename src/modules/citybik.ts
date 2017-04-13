@@ -1,7 +1,7 @@
 import { Map, List } from 'immutable';
 import { IAsyncAction } from '../utils/asyncActions';
 import { API_FETCH } from './apiMiddleware';
-import { push } from 'react-router-redux';
+import { LOCATION_CHANGE } from '../shared-components/router-with-redux';
 
 export type ICitybikModuleName = 'citybik';
 
@@ -88,9 +88,6 @@ export function getCurrentNetworkLoadingStatus(state: any): IAsyncAction {
 // Reducer
 export const reducer = (state = initialState, action: any) => {
   switch (action.type) {
-    default: {
-      return state;
-    }
     case SET_CITYBIK_NETWORKS_LIST: {
       return state.merge({ citybikNetworks: action.payload });
     }
@@ -131,6 +128,11 @@ export const reducer = (state = initialState, action: any) => {
     case CURRENT_CITYBIK_NETWORK_LOADING_STATUS_UNCAUGHT: {
       return state.merge({ currentNetworkLoadingStatus: 'ERROR' });
     }
+    case LOCATION_CHANGE: 
+      return state;
+    default: {
+      return state;
+    }
   }
 };
 
@@ -158,8 +160,4 @@ export function fetchCitybikNetwork(networkId: string) {
       uncaughtErrorActionType: CURRENT_CITYBIK_NETWORK_LOADING_STATUS_UNCAUGHT,
     },
   };
-}
-
-export function goToCitybikNetwork(networkId: string) {
-  return push(networkId);
 }

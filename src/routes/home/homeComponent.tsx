@@ -1,13 +1,13 @@
 import * as Antd from 'antd';
 import * as React from 'react';
+import { RouteComponentProps } from 'react-router';
 import TitleBar from '../../shared-components/title-bar/title-bar';
 import { ICitybikNetwork } from '../../modules/citybik';
 import { List } from 'immutable';
 
-interface IMainProps {
+interface IMainProps extends RouteComponentProps<any> {
   networks: List<ICitybikNetwork>;
   fetchCitybikNetworks: any;
-  goToCitybikNetwork: any;
 }
 
 class Main extends React.Component<IMainProps, any> {
@@ -42,7 +42,7 @@ class Main extends React.Component<IMainProps, any> {
 
   private onMenuItemSelect(e: any) {
     const selectedNetwork = this.props.networks.get(e.key);
-    this.props.goToCitybikNetwork(selectedNetwork.get('id'));
+    this.props.history.push(selectedNetwork.get('id'));
   }
 
   private getMenuItems() {
@@ -54,7 +54,6 @@ class Main extends React.Component<IMainProps, any> {
       return <div>{network.location.city}</div>;
     });
   }
-
 }
 
 export default Main;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 interface InitializeWithDataProps {
   initializer: () => void;
@@ -7,8 +8,8 @@ interface InitializeWithDataProps {
 
 class InitializeWithData extends React.Component<InitializeWithDataProps, any> {
   static propTypes = {
-    children: React.PropTypes.element.isRequired,
-    initializer: React.PropTypes.func.isRequired,
+    children: PropTypes.element.isRequired,
+    initializer: PropTypes.func.isRequired,
   }
   constructor(props: InitializeWithDataProps) {
     super(props);

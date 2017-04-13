@@ -11,7 +11,9 @@ export default class NetworkStationsComponent extends React.Component<INetworkSt
 
   public render() {
     const stations = this.props.network.get('stations');
-    const dataSource = stations ? stations.toJS().sort(this.stationSorter) : [];
+    const dataSource = stations ? stations.toJS()
+      .map((station, index) => {station.key = index; return station;})
+      .sort(this.stationSorter) : [];
 
     const columns = [
       {

@@ -1,5 +1,5 @@
 import { Map, fromJS } from 'immutable';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { LOCATION_CHANGE } from '../shared-components/router-with-redux';
 
 export const ModuleName = 'routing';
 
