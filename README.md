@@ -29,81 +29,56 @@ project
 
 ```
 
-## React Components
-> React containers and components should have a single default export.
-> 
->  why?   
->  A component is a single thing. Since it is a single thing, having a named export seems redundant.
->  Also, any component that needs to have methods tested or stubbed out for testing will already be a class instance.
->  Since it is a class instance, methods on that instance can easily be stubbed out.
+## Redux
 
+### Middleware over Thunks
+With thunks, you're able to do pretty much anything you want. While this flexibility does make it
+easier to get your code working we have to remember that it takes much more time to read code than
+it does to write it. You may need to go back and troubleshoot or even expand on your workflow and
+eventually that flexibility that thunks gave you will become more of a headache. Rather, we keep
+to a strict adherance to the purely functional redux flow and use redux middleware to perform
+asynchronous actions such as API calls.
 
-## Redux modules
-> modules should be contained within directory structure
->
-> why?   
-> modules contain many parts. In order to keep things organized and easy to fine,
-> separating the modules into their respective parts will be helpful.  Each part
-> will be re-exported from a single index.ts file which will be imported as the module.
+### API post processing in the redux reducers
+Our middleware is designed to do nothing more than to access an API resource and pass on the error
+or response as the payload to a redux action. We then handle any API data post processing in the
+reducer before setting the response to state. 
 
-> I hate index files.
->
-> why index files?
->
-> The reason index files are so annoying is that in your editor, it's difficult to work
-> a bunch of open index files.  However, afte these index files are created, it's unlikely
-> that you'll ever need to open them again.
+## Typescript and Babel
+If Typescript is so great, why do we need Babel?
 
-> no logic should go into index.ts, it is for re-exporting the exports of the other files only
->
-> Why?
-> 
-> Because otherwise you'd start hating these index files again.
-
-```
-modules
-|
-|__ module1
-|   | _actions.ts 
-|   | _constants.ts
-|   | _interfaces.ts
-|   | _reducer.ts
-|   | index.ts
-|
-|__ module2
-|   | _actions.ts 
-|   | _constants.ts
-|   | _interfaces.ts
-|   | _reducer.ts
-|   | index.ts
-```
-
-## Typescript not Babel (definitely not both)
-Typescript allows the use of many features we want while allowing us to transpile down to ES5.
-There really is no need for both Typescript and Babel
+That's a good question. While Typescript has many great features it does not have feature parity
+with Babel. Babel is much more than a simple transpiler that allows you to write code with language
+features not yet available in all browsers. Babel has a large community of developers writing plugins
+and this project uses one such plugin that allows us to do something similar to webpack tree shaking
+with ES5 node modules. That plugin is the babel-plugin-import module which we use to keep our
+distribution files small by only using the parts of libraries that we need. For us, this means that
+we can use Ant Design without including the Ant Design components that we don't use in our
+distributed files. This plugin also works well for node modules such as lodash or custom modules
+that you might write for a shared component library.
 
 ## Interfaces over models (classes)
-Models have typically been classes onto themselves, however these classes have no class methods attached to them.
-Since they have no class methods attached to the, they don't serve a purpose outside of providing type safety when initializing a new instance.
-This can be accomplished the same way with interfaces. (see the interfaces in the citybik module and asyncActions utility)
+Models have typically been classes onto themselves, however these classes have no class methods
+attached to them. Since they have no methods attached to them, the classes don't serve a purpose
+outside of providing type safety when initializing a new instance of a model.
+This can be accomplished the same way with interfaces. (see the interfaces in the citybik module and
+asyncActions utility)
 
 ## ES6 Modules over Typescript modules/namespaces
-With Typescript 2 fully supporting ES6 modules, there is no longer any need to use Typescript modules or namespaces.
-
-## Default vs Named Components
-- Redux modules should be named exports
-  - able to test exports
-  - able to stub internal methods when testing exports
-  - import using 'import * as Module' to allow stubbing in test files
-- Components and Containers should have a single default export.
-  - see reasoning above
-
+With Typescript 2 fully supporting ES6 modules, there is no longer any need to use Typescript
+modules or namespaces.
 
 # Builds
 
 ## Tree Shaking and other code minimization techniques
 ### new webpack.optimize.UglifyJsPlugin() in webpack prod configuration
-vendor.js file went from 3.8M to 1.4M, even with using import * from 'package';
+vendor.js file went from 3.8M to 1.4M by including this plugin with beautify set to false and 
+removing comments and IE8 support.
+
+### babel-plugin-import
+further reduces vendor.js by only included parts of node modules that were includes. This does not
+support all node module package, but just on Ant Design the vendor.js file when down another 900K
+to 506K.
 
 ## Cache Busting on prod builds
 NODE_ENV is used to determine separate webpack configs. 
