@@ -16,13 +16,28 @@ interface INetworkProps {
   match: any;
 }
 
-const NetworkComponent = (props: INetworkProps) => {
-  const { networkId } = props.match.params;
-  const title = props.network ?
-    props.network.get('name') :
-    networkId;
-  return (
-    <InitializeWithData initializer={() => props.fetchCitybikNetwork(networkId)}>
+class NetworkComponent extends React.Component<INetworkProps, {}> {
+
+  public componentDidMount() {
+    const { networkId } = this.props.match.params;
+    this.props.fetchCitybikNetwork(networkId);
+  }
+
+  public componentWillReceiveProps(nextProps) {
+    const networkId = this.props.match.params.networkId;
+    const nextNetworkId = nextProps.match.params.networkId;
+    if (networkId !== nextNetworkId) {
+      this.props.fetchCitybikNetwork(nextNetworkId);
+    }
+  }
+
+  public render() {
+    const { networkId } = this.props.match.params;
+    const title = this.props.network ?
+      this.props.network.get('name') :
+      networkId;
+
+    return (
       <div className="my-main-page">
         <TitleBar
           title={title}
@@ -30,8 +45,9 @@ const NetworkComponent = (props: INetworkProps) => {
         <NetworkDetailContainer />
         <NetworkStationsContainer />
       </div>
-    </InitializeWithData>
-  );
-};
+    );
+  }
+
+}
 
 export default NetworkComponent;

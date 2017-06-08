@@ -1,3 +1,5 @@
+# WORK IN PROGRESS
+
 ## Project structure
 Project structure is set up to promote organization by function rather than type.
 i.e. files are not organized by what they are, but rather by what part of the app they are associated with.

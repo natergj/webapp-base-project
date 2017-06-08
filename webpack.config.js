@@ -27,6 +27,10 @@ const getConfig = (env) => {
     module: {
       rules: [
         {
+          test: /\.(jsx|js)$/,
+          use: [{ loader: 'babel-loader' }],
+        },
+        {
           test: /\.(tsx|ts)$/,
           use: [
             {
@@ -35,20 +39,6 @@ const getConfig = (env) => {
                 silent: true,
                 useCache: true,
                 useBabel: true,
-                babelOptions: {
-                  "presets": [
-                    "react",
-                    [ "es2015", { "modules": false } ],
-                  ],
-                  "plugins": [
-                    [ 
-                      "import", [
-                        { "libraryName": "antd", "libraryDirectory": "lib", "style": true },
-                        { "libraryName": "lodash" },
-                      ]
-                    ],
-                  ],
-                },
               },
             },
           ],

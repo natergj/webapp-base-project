@@ -20,7 +20,7 @@
     "url": "https://natergj@bitbucket.org/natergj/react-redux-typescript-antd-base-project.git"
   },
   "author": "",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "antd": "2.9.1",
     "immutable": "3.8.1",

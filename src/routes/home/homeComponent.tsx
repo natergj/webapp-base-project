@@ -42,7 +42,7 @@ class Main extends React.Component<IMainProps, any> {
 
   private onMenuItemSelect(e: any) {
     const selectedNetwork = this.props.networks.get(e.key);
-    this.props.history.push(selectedNetwork.get('id'));
+    this.props.history.push('bikeshare/' + selectedNetwork.get('id'));
   }
 
   private getMenuItems() {
