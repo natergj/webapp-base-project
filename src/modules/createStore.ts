@@ -15,10 +15,11 @@ const reducers = combineReducers({
   [Routing.ModuleName]: Routing.reducer,
 });
 
-// Compose all middleware functions into the redux execution chain (ordering may be important to you)
-const composedMiddleware = compose(
-  applyMiddleware(apiMiddleware),
-);
+// Compose all middleware functions into the redux execution chain
+const middleware = [
+  apiMiddleware,
+];
+const composedMiddleware = compose(applyMiddleware(...middleware));
 
 // Combine all reducer states into a single redux store and export for use with react-router
 export const store = createStore(

@@ -6,7 +6,7 @@
     ],
     "rules": {
 
-        // rules availably via tslint-eslint-rules
+        // rules available via tslint-eslint-rules
         "indent": [true, "spaces"],
         "no-multi-spaces": true,
         "no-duplicate-case": true,

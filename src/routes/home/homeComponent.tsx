@@ -32,7 +32,7 @@ class Main extends React.Component<IMainProps, any> {
         />
         <div className="my-content">
           <h1>Select a city from the title bar menu to view current bike share station statistics.</h1>
-          <h2>This project uses the open API provided by 
+          <h2>This project uses the open API provided by
             <a href="https://api.citybik.es/v2/">https://api.citybik.es/v2/</a>
           </h2>
         </div>
@@ -47,11 +47,11 @@ class Main extends React.Component<IMainProps, any> {
 
   private getMenuItems() {
     if (this.props.networks.size === 0) {
-      return [ <div><Antd.Icon type="loading" /> loading...</div> ];
+      return [ <div key={0}><Antd.Icon type="loading" /> loading...</div> ];
     }
     const networkArray = this.props.networks.toJS();
     return networkArray.map((network: ICitybikNetwork) => {
-      return <div>{network.location.city}</div>;
+      return <div key={network.id}>{network.location.city}</div>;
     });
   }
 }

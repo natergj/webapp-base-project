@@ -31,16 +31,10 @@ const getConfig = (env) => {
           use: [{ loader: 'babel-loader' }],
         },
         {
-          test: /\.(tsx|ts)$/,
+          test: /\.(ts|tsx)$/,
           use: [
-            {
-              loader: 'awesome-typescript-loader',
-              options:  {
-                silent: true,
-                useCache: true,
-                useBabel: true,
-              },
-            },
+            {loader: 'babel-loader'},
+            {loader: 'ts-loader'},
           ],
         },
         {

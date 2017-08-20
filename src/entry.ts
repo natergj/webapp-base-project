@@ -6,3 +6,7 @@ import './app';
 
 // load main style sheet
 import './scss/index.scss';
+
+// import polyfills
+import 'isomorphic-fetch';
+import 'matchmedia-polyfill';
